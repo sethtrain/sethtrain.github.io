@@ -10,7 +10,7 @@ ghp-import = "*"
 
 [scripts]
 generate = "pelican content"
-publish = "ghp-import"
+publish = "ghp-import output"
 preview = "pelican -l"
 
 [requires]
