@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <title>The Train Station - lsp</title>
+        <link rel="stylesheet" href="../theme/css/main.css" />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="../">The Train Station </a></h1>
+                <nav><ul>
+                    <li><a href="../category/development.html">Development</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+
+            <aside id="featured" class="body">
+                <article>
+                    <h1 class="entry-title"><a href="../decent-python-workflow-in-vim.html">Decent Python workflow in Vim</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2019-06-14T20:00:00-05:00">
+                Published: Fri 14 June 2019
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="../author/seth-buntin.html">Seth Buntin</a>
+        </address>
+<p>In <a href="../category/development.html">Development</a>.</p>
+<p>tags: <a href="../tag/python.html">python</a> <a href="../tag/vim.html">vim</a> <a href="../tag/tmux.html">tmux</a> <a href="../tag/lsp.html">lsp</a> </p>
+</footer><!-- /.post-info --><p>Like many others, I've been using IntelliJ's Python plugin to do Python development.  One would be hardpressed to find
+a better environment to develop within.  I've often told people that Ideavim is the best Vim I've ever used.  Not because
+it is more powerful than Vim proper but because of the ecosystem (IntelliJ) from which Ideavim runs.</p>
+<p>In recent years, we've seen tools like Microsoft's Visual Studio Code become more and more useful and powerful.  It feels like
+with the introduction of these new tools we seen the introduction of supporting tool, such as language servers, come to light.
+While these systems aren't new I've never used them until recently and I have been pleasantly surprised with the power they provide.</p>
+<p>All of this to say, I still find Vim the place I want to work.  Other vim emulators are decent but their is still a plugin
+system within the Vim ecosystem that I find valuable in my workflows and wanted to see if I could come up with an acceptable
+alternative.  Let's take a ride and see where we stop...</p>
+<h2>Disclaimer</h2>
+<p>Software engineers are quite opinionated about their development environments, me included.  Hopefully this article and tools
+mentioned within gives you the ability to choose the bits you like and lets you throw away and replace the items you don't.
+My workflow is just that, my workflow.  It isn't perfect but it is within the realm of what makes me feel comfortable. I'll
+just quickly mention here some base tools that I use to make this workflow happen.  I use <code>pyenv</code>, <code>pipenv</code>, <code>vim</code> (version 8)
+and <code>tmux</code> with <code>tmuxp</code> to quickly and easily get me in the zone.</p>
+<h2>My goal</h2>
+<p>I feel like there are a couple different tasks that make IntelliJ an optimal environment for Python.  The indexing used within
+the tool provides the ability for us to jump to various places within our code whenever we want.  We can actually hop into Flask
+and see the implementation of a <code>Blueprint</code>.  This is a powerful ability and the first on the list to be able to replicate.  The
+next was the ability to rename functions and variables and that rename successfully propagate throughout the application.  All
+the other pieces of functionality can be wrapped up in various tools, as you will see, so I won't make those a part of my initial
+goal.</p>
+<h2>Vim</h2>
+<p>I've found these plugins are the ideal plugins to lay the foundation for my main goals.  I use <code>vim-plug</code> as my plugin manager
+but you should be able to use most of the current plugin managers.</p>
+<div class="highlight"><pre><span></span><span class="nv">Plug</span> <span class="s1">&#39;</span><span class="s">prabirshrestha/async.vim</span><span class="s1">&#39;</span>
+<span class="nv">Plug</span> <span class="s1">&#39;</span><span class="s">prabirshrestha/vim-lsp</span><span class="s1">&#39;</span>
+<span class="nv">Plug</span> <span class="s1">&#39;</span><span class="s">w0rp/ale</span><span class="s1">&#39;</span>
+<span class="nv">Plug</span> <span class="s1">&#39;</span><span class="s">davidhalter/jedi-vim</span><span class="s1">&#39;</span>
+
+<span class="s2">&quot;</span><span class="s"> ------------------------------------------------------------------------------</span>
+<span class="s2">&quot;</span><span class="s"> LSP</span>
+<span class="s2">&quot;</span><span class="s"> ------------------------------------------------------------------------------</span>
+<span class="k">if</span> <span class="nv">executable</span><span class="ss">(</span><span class="s1">&#39;</span><span class="s">pyls</span><span class="s1">&#39;</span><span class="ss">)</span>
+    <span class="nv">au</span> <span class="nv">User</span> <span class="nv">lsp_setup</span> <span class="k">call</span> <span class="nl">lsp</span>#<span class="nv">register_server</span><span class="ss">(</span>{
+            \ <span class="s1">&#39;</span><span class="s">name</span><span class="s1">&#39;</span>: <span class="s1">&#39;</span><span class="s">pyls</span><span class="s1">&#39;</span>,
+            \ <span class="s1">&#39;</span><span class="s">cmd</span><span class="s1">&#39;</span>: {<span class="nv">server_info</span><span class="o">-&gt;</span>[<span class="s1">&#39;</span><span class="s">pyls</span><span class="s1">&#39;</span>]},
+            \ <span class="s1">&#39;</span><span class="s">whitelist</span><span class="s1">&#39;</span>: [<span class="s1">&#39;</span><span class="s">python</span><span class="s1">&#39;</span>],
+            \ }<span class="ss">)</span>
+<span class="k">endif</span>
+<span class="nv">let</span> <span class="nv">g</span>:<span class="nv">lsp_diagnostics_enabled</span> <span class="o">=</span> <span class="mi">0</span> <span class="c1">; turn off diagnosis because I feel w0rp/ale does a better job</span>
+</pre></div>
+
+
+<p>Once you have these installed and configured you just need the <code>python-language-server</code>.</p>
+<h2>Python requirements</h2>
+<div class="highlight"><pre><span></span><span class="k">[[source]]</span>
+<span class="na">url</span> <span class="o">=</span> <span class="s">&quot;https://pypi.org/simple&quot;</span>
+<span class="na">verify_ssl</span> <span class="o">=</span> <span class="s">true</span>
+<span class="na">name</span> <span class="o">=</span> <span class="s">&quot;pypi&quot;</span>
+
+<span class="k">[packages]</span>
+
+<span class="k">[dev-packages]</span>
+<span class="na">python-language-server</span> <span class="o">=</span> <span class="s">&quot;~=0.26&quot;</span>
+
+<span class="k">[scripts]</span>
+<span class="na">pyls</span> <span class="o">=</span> <span class="s">&quot;pyls&quot;</span>
+
+<span class="k">[requires]</span>
+<span class="na">python_version</span> <span class="o">=</span> <span class="s">&quot;3.7.3&quot;</span>
+</pre></div>
+
+
+<p>Now how do we put these together to accomplish our goals?</p>
+<h2>Tmux and Tmuxp</h2>
+<p>I'm definitely not here to sell you on <code>tmux</code> or <code>tmuxp</code> just show you how I use them to glue it all up.  Here is an example <code>.tmuxp.yml</code>
+file:</p>
+<div class="highlight"><pre><span></span>start_directory: &quot;<span class="cp">${</span><span class="n">PWD</span><span class="cp">}</span>&quot;
+shell_command_before: &quot;pyenv local 3.7.3&quot;
+session_name: project_name
+environment:
+  VIRTUAL_ENV: &quot;change-me&quot;
+windows:
+- window_name: vim
+  panes:
+      - vim
+- window_name: execs
+  panes:
+      - pipenv run pyls
+</pre></div>
+
+
+<p>There is definitely one special thing to note here.  <code>vim-jedi</code> still doesn't easily work with <code>pipenv</code> so I accomplish the
+loading of the <code>virtualenv</code> by setting the <code>VIRTUAL_ENV</code> environment variable.  Without it <code>vim-jedi</code> will try to find the definitions
+within the system python.</p>
+<p>Once this is established a simple <code>tmuxp load .</code> will load of the session and you are on your way.</p>
+<h2>See it in action</h2>
+<p>Let's see it in action...</p>
+<h2>Notable mentions</h2>
+<p>While we just went over a couple of tasks to potentially replace my IntelliJ workflow it definitely isn't everything.  Some notable mentions
+are: <code>Tagbar</code>, <code>vim-fugitive</code>, <code>dispatch</code> (for running quick tasks while in the editor), <code>NERDTree</code>, <code>vimux</code> and <code>fzf</code> to name a few more.</p>
+<p>I hope you have found these useful and now feel empowered to embark on the journey to use the tools that we have all loved for many years
+now with some of the more modern abilities of today's IDE's and tools.</p>                </article>
+            </aside><!-- /#featured -->
+        <section id="extras" class="body">
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>
