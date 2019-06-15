@@ -111,9 +111,10 @@ Once this is established a simple `tmuxp load .` will load of the session and yo
 
 See it in action
 ----------------
-
 Let's see it in action...
 
+<iframe src="https://player.vimeo.com/video/342394889" width="640" height="400" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+<p><a href="https://vimeo.com/342394889">vim-python-workflow</a> from <a href="https://vimeo.com/user394719">Seth Buntin</a> on <a href="https://vimeo.com">Vimeo</a>.</p>
 
 Notable mentions
 ----------------
