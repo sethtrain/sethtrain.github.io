@@ -2,32 +2,37 @@
 <html lang="en">
 <head>
         <meta charset="utf-8" />
-        <title>The Train Station - Seth Buntin</title>
-        <link rel="stylesheet" href="../theme/css/main.css" />
+        <title>Refactoring this Flask View</title>
+        <link rel="stylesheet" href="./theme/css/main.css" />
 </head>
 
 <body id="index" class="home">
         <header id="banner" class="body">
-                <h1><a href="../">The Train Station </a></h1>
+                <h1><a href="./">The Train Station </a></h1>
                 <nav><ul>
-                    <li><a href="../category/development.html">Development</a></li>
+                    <li class="active"><a href="./category/development.html">Development</a></li>
                 </ul></nav>
         </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="./refactoring-this-flask-view.html" rel="bookmark"
+           title="Permalink to Refactoring this Flask View">Refactoring this Flask View</a></h1>
+    </header>
 
-            <aside id="featured" class="body">
-                <article>
-                    <h1 class="entry-title"><a href="../refactoring-this-flask-view.html">Refactoring this Flask View</a></h1>
+    <div class="entry-content">
 <footer class="post-info">
         <abbr class="published" title="2019-06-15T12:00:00-05:00">
                 Published: Sat 15 June 2019
         </abbr>
 
         <address class="vcard author">
-                By                         <a class="url fn" href="../author/seth-buntin.html">Seth Buntin</a>
+                By                         <a class="url fn" href="./author/seth-buntin.html">Seth Buntin</a>
         </address>
-<p>In <a href="../category/development.html">Development</a>.</p>
-<p>tags: <a href="../tag/python.html">python</a> <a href="../tag/refactoring.html">refactoring</a> <a href="../tag/design.html">design</a> </p>
-</footer><!-- /.post-info --><p>Recently, <a href="http://myemma.com">at my day job</a>, I ran across a situation that I wondered if I could make better.  <em>"Better"</em> to a software
+<p>In <a href="./category/development.html">Development</a>.</p>
+<p>tags: <a href="./tag/python.html">python</a> <a href="./tag/refactoring.html">refactoring</a> <a href="./tag/design.html">design</a> </p>
+</footer><!-- /.post-info -->      <p>Recently, <a href="http://myemma.com">at my day job</a>, I ran across a situation that I wondered if I could make better.  <em>"Better"</em> to a software
 engineer is definitely subjective.  Hopefully I make the case as to why I think it is better.</p>
 <h2>Change</h2>
 <p>If there is one thing I've learned as a software engineer it is that change is inevitable.  There are <a href="https://www.amazon.com/Working-Effectively-Legacy-Michael-Feathers/dp/0131177052">smart</a>
@@ -139,38 +144,11 @@ on ensuring that these dispatchers actually dispatched the amount of times I exp
 <ul>
 <li>I have pulled the implementation into a class that is only dependent on what is sent to it.  We could go so far as to change how we log and still not have to change this implementation.  Sure, we might have to implement some form of adapter if we ever decided to do that but I'm okay with that.</li>
 <li>It is now easier to test this functionality.  I no longer have to depend on mocking a request or anything like that.  I definitely could get this benefit from a simple function.  I just chose not to go that direction here.</li>
-</ul>                </article>
-            </aside><!-- /#featured -->
-                <section id="content" class="body">
-                    <h1>Other articles</h1>
-                    <hr />
-                    <ol id="posts-list" class="hfeed">
+</ul>
+    </div><!-- /.entry-content -->
 
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="../decent-python-workflow-in-vim.html" rel="bookmark"
-                           title="Permalink to Decent Python workflow in Vim">Decent Python workflow in Vim</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2019-06-14T20:00:00-05:00">
-                Published: Fri 14 June 2019
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="../author/seth-buntin.html">Seth Buntin</a>
-        </address>
-<p>In <a href="../category/development.html">Development</a>.</p>
-<p>tags: <a href="../tag/python.html">python</a> <a href="../tag/vim.html">vim</a> <a href="../tag/tmux.html">tmux</a> <a href="../tag/lsp.html">lsp</a> </p>
-</footer><!-- /.post-info -->                <p>Like many others, I've been using IntelliJ's Python plugin to do Python development.  One would be hardpressed to find
-a better environment to develop within.  I've often told people that Ideavim is the best Vim I've ever used.  Not because
-it is more powerful than Vim proper but because of …</p>
-                <a class="readmore" href="../decent-python-workflow-in-vim.html">read more</a>
-                </div><!-- /.entry-content -->
-            </article></li>
-                </ol><!-- /#posts-list -->
-                </section><!-- /#content -->
+  </article>
+</section>
         <section id="extras" class="body">
         </section><!-- /#extras -->
 
