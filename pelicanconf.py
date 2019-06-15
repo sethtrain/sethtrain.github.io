@@ -26,7 +26,7 @@ LINKS = ()
 SOCIAL = ()
 
 
-DEFAULT_PAGINATION = 10
+DEFAULT_PAGINATION = 3
 
 # Uncomment following line if you want document-relative URLs when developing
 RELATIVE_URLS = True
