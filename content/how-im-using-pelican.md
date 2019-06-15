@@ -12,7 +12,7 @@ Pelican
 -------
 There are many static site generators so I did a quick search for "Python static site generator" (Python is still my go to language)
 and an [article](https://www.fullstackpython.com/static-site-generator.html) that mentioned [Pelican](http://docs.getpelican.com/en/stable/)
-showed up first.  I stuck with it and wanted to share how am producing this articles.
+showed up first.  I stuck with it and wanted to share how am producing these articles.
 
 Python
 ------
