@@ -6,12 +6,10 @@ name = "pypi"
 [packages]
 pelican = "*"
 markdown = "*"
-ghp-import = "*"
 
 [scripts]
-generate = "pelican content"
-publish = "ghp-import output"
-preview = "pelican -l"
+generate = "pelican content --output ."
+preview = "pelican -l --output ."
 
 [requires]
 python_version = "3.7.3"
