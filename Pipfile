@@ -11,6 +11,7 @@ ghp-import = "*"
 [scripts]
 generate = "pelican content"
 publish = "ghp-import"
+preview = "cd output; pipenv run python -m pelican.server"
 
 [requires]
 python_version = "3.7.3"
