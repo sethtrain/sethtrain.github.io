@@ -17,7 +17,38 @@
 
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href="../how-im-using-pelican.html">How I'm using Pelican</a></h1>
+                    <h1 class="entry-title"><a href="../standing-on-the-shoulders-of-giants.html">Standing on the Shoulders of Giants</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2019-06-17T12:00:00-05:00">
+                Published: Mon 17 June 2019
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="../author/seth-buntin.html">Seth Buntin</a>
+        </address>
+<p>In <a href="../category/development.html">Development</a>.</p>
+<p>tags: <a href="../tag/design.html">design</a> </p>
+</footer><!-- /.post-info --><p>John Salisbury, in 1159, wrote in his <em>Metalogicon</em>:</p>
+<blockquote>
+<p>Bernard of Chartres used to compare us to dwarfs perched on the shoulders of giants. He pointed out that we see more and farther than our predecessors, not because we have keener vision or greater height, but because we are lifted up and borne aloft on their gigantic stature.</p>
+</blockquote>
+<p>This has been a big inspiration for me.  As I've grown in my career as a software engineer I've learned one major lesson.  I don't have to know it all and most importantly there is really nothing new under the sun.  This has broken down
+so many walls in my career.  I can have the confidence that I probably don't have to come up with a new way to authenticate users or design a new pattern for an eventing system.  These systems have been created and they have been created
+by men and women who are way smarter than I'll ever be.</p>
+<p>This doesn't make things easier.  It definitely has caused me to struggle to find these solutions but at the end of the day I can feel assured that whatever I'm working on has probably been done before so I push forward in study and research.</p>                </article>
+            </aside><!-- /#featured -->
+                <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <hr />
+                    <ol id="posts-list" class="hfeed">
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="../how-im-using-pelican.html" rel="bookmark"
+                           title="Permalink to How I'm using Pelican">How I'm using Pelican</a></h1>
+                </header>
+
+                <div class="entry-content">
 <footer class="post-info">
         <abbr class="published" title="2019-06-15T14:15:00-05:00">
                 Published: Sat 15 June 2019
@@ -28,55 +59,12 @@
         </address>
 <p>In <a href="../category/general.html">General</a>.</p>
 <p>tags: <a href="../tag/vim.html">vim</a> <a href="../tag/pelican.html">pelican</a> </p>
-</footer><!-- /.post-info --><p>I've obviously just recently got back into writing a blog or whatever you want to call this.  The honest reason was because I was
+</footer><!-- /.post-info -->                <p>I've obviously just recently got back into writing a blog or whatever you want to call this.  The honest reason was because I was
 at home one weekend while my family was visting other family members.  Just a couple of weeks prior I had bought an
-<a href="https://www.alpacakeyboards.com/">Ergodox 76 Hotdox</a> which I use mainly at work.  My typing has gradually gotten better but I wanted
-to use this time to continue to get better so I'm forcing myself to use it.</p>
-<h2>Pelican</h2>
-<p>There are many static site generators so I did a quick search for "Python static site generator" (Python is still my go to language)
-and an <a href="https://www.fullstackpython.com/static-site-generator.html">article</a> that mentioned <a href="http://docs.getpelican.com/en/stable/">Pelican</a>
-showed up first.  I stuck with it and wanted to share how am producing these articles.</p>
-<h2>Python</h2>
-<p>As I mentioned in an earlier article I have <code>pyenv</code> and <code>pipenv</code> setup.  Here is my <code>Pipfile</code> for <a href="https://sethtrain.github.io">https://sethtrain.github.io</a></p>
-<div class="highlight"><pre><span></span><span class="k">[[source]]</span>
-<span class="na">url</span> <span class="o">=</span> <span class="s">&quot;https://pypi.org/simple&quot;</span>
-<span class="na">verify_ssl</span> <span class="o">=</span> <span class="s">true</span>
-<span class="na">name</span> <span class="o">=</span> <span class="s">&quot;pypi&quot;</span>
-
-<span class="k">[packages]</span>
-<span class="na">pelican</span> <span class="o">=</span> <span class="s">&quot;*&quot;</span>
-<span class="na">markdown</span> <span class="o">=</span> <span class="s">&quot;*&quot;</span>
-
-<span class="k">[scripts]</span>
-<span class="na">generate</span> <span class="o">=</span> <span class="s">&quot;pelican content --output .&quot;</span>
-<span class="na">preview</span> <span class="o">=</span> <span class="s">&quot;pelican -l --output .&quot;</span>
-
-<span class="k">[requires]</span>
-<span class="na">python_version</span> <span class="o">=</span> <span class="s">&quot;3.7.3&quot;</span>
-</pre></div>
-
-
-<p>To get up and running, install these dependencies and then run <code>pelican-quickstart</code>.  It will walk you through a couple of questions
-and get everything started for you. The <a href="http://docs.getpelican.com/en/stable/quickstart.html">documentation</a> does a good job of
-explaining all of this.</p>
-<p>It is pretty simple.  I create a new <a href="https://daringfireball.net/projects/markdown/">markdown</a> file in the <code>content</code> directory.
-When I feel like I am done I will generate the site, do a quick preview locally to see if I have any issues and then push to GitHub.</p>
-<h2>Vim</h2>
-<p>I had established a couple of <code>&lt;leader&gt;</code> bindings for Pelican projects to help me generate and preview quickly.  <a href="https://github.com/tpope/vim-dispatch">vim-dispatch</a>
-makes this possible and easy.</p>
-<div class="highlight"><pre><span></span><span class="k">if</span> <span class="nv">filereadable</span><span class="ss">(</span><span class="s2">&quot;</span><span class="s">pelicanconf.py</span><span class="s2">&quot;</span><span class="ss">)</span>
-    <span class="nv">nmap</span> <span class="o">&lt;</span><span class="nv">leader</span><span class="o">&gt;</span><span class="nv">G</span> :<span class="nv">Dispatch</span> <span class="nv">pipenv</span> <span class="nv">run</span> <span class="nv">generate</span><span class="o">&lt;</span><span class="nv">cr</span><span class="o">&gt;</span>
-    <span class="nv">nmap</span> <span class="o">&lt;</span><span class="nv">leader</span><span class="o">&gt;</span><span class="nv">R</span> :<span class="nv">Dispatch</span> <span class="nv">pipenv</span> <span class="nv">run</span> <span class="nv">preview</span><span class="o">&lt;</span><span class="nv">cr</span><span class="o">&gt;</span>
-<span class="k">endif</span>
-</pre></div>
-
-
-<p>Have fun!</p>                </article>
-            </aside><!-- /#featured -->
-                <section id="content" class="body">
-                    <h1>Other articles</h1>
-                    <hr />
-                    <ol id="posts-list" class="hfeed">
+<a href="https://www.alpacakeyboards.com/">Ergodox 76 Hotdox</a> which …</p>
+                <a class="readmore" href="../how-im-using-pelican.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
 
             <li><article class="hentry">
                 <header>
@@ -102,31 +90,11 @@ engineer is definitely subjective.  Hopefully I make the case as to why I think 
                 <a class="readmore" href="../refactoring-this-flask-view.html">read more</a>
                 </div><!-- /.entry-content -->
             </article></li>
-
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="../decent-python-workflow-in-vim.html" rel="bookmark"
-                           title="Permalink to Decent Python workflow in Vim">Decent Python workflow in Vim</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2019-06-14T20:00:00-05:00">
-                Published: Fri 14 June 2019
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="../author/seth-buntin.html">Seth Buntin</a>
-        </address>
-<p>In <a href="../category/development.html">Development</a>.</p>
-<p>tags: <a href="../tag/python.html">python</a> <a href="../tag/vim.html">vim</a> <a href="../tag/tmux.html">tmux</a> <a href="../tag/lsp.html">lsp</a> </p>
-</footer><!-- /.post-info -->                <p>Like many others, I've been using IntelliJ's Python plugin to do Python development.  One would be hardpressed to find
-a better environment to develop within.  I've often told people that Ideavim is the best Vim I've ever used.  Not because
-it is more powerful than Vim proper but because of …</p>
-                <a class="readmore" href="../decent-python-workflow-in-vim.html">read more</a>
-                </div><!-- /.entry-content -->
-            </article></li>
                 </ol><!-- /#posts-list -->
+<p class="paginator">
+    Page 1 / 2
+        <a href="../author/seth-buntin2.html">&raquo;</a>
+</p>
                 </section><!-- /#content -->
         <section id="extras" class="body">
         </section><!-- /#extras -->
