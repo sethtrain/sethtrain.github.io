@@ -49,7 +49,7 @@ we do this together.
 As you've experienced I'm also in charge of hiring.  This is another favorite thing to do.  It is hard and tiring but in the end it
 is rewarding.
 
-I'm also in active of compensation, promotions, reviews and all the "managery" things you might think of.  These things come with
+I'm also active in compensation, promotions, reviews and all the "managery" things you might think of.  These things come with
 my role and I am eager to help where and how I can you navigate these conversations and situations.
 
 ### Team
