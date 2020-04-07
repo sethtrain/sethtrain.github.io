@@ -1,4 +1,4 @@
-Title: Management README
+Title: Manager README
 Date: 2019-08-02 10:00
 Category: Development
 Tags: management
@@ -58,10 +58,10 @@ I get to be involved in a little bit of the day to day activities of the team.  
 do you job and do it effectively together.  I help coordinate conversations and collaboration.  I help coach for the best outcome.
 You will some times hear me say _"We win and lose as a team."_  This is true, we can't do this without each other.  The people that
 sit with you and around you are your best allies.  The analogy I like to use here is that of Steve Kerr, the head coach for the Golden
-State Warriors.  If you watch him during a game you'll notice that he is most often sitting comfortably on the side lines letting his
+State Warriors.  If you watch him during a game you'll notice that he is most often sitting comfortably on the bench letting the
 team play.  He may step up and adjust during the game but his actions show that the team is at work.  I believe that the best coaching
 happens through our 1:1 conversations and various team meetings and that the time for the team to shine is during the sprint.  I may
-help adjust along the way but this is game time for a product team.
+help adjust along the way but this is game time for a product engineering team.
 
 This is where process happens.  One note about process and who I am at my core.  I obviously care about process in that I have created
 this document that details all of the things that mean something to me and I want to consistantly be communicating and enacting.  But,
@@ -98,6 +98,7 @@ this before and learn from their successes and failures.
 ### General
 
 - Facts over fear
+- Perfect is the enemy of Progress
 - A program that sells and makes money is better than one that doesn't
 - It is important to not stop questioning
 - Be introspective. If something goes wrong adapt the process that got you there.
