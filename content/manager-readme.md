@@ -1,5 +1,5 @@
 Title: Manager README
-Date: 2019-08-02 10:00
+Date: 2020-04-07 10:00
 Category: Development
 Tags: management
 
