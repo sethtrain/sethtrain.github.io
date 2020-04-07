@@ -8,7 +8,7 @@
 
 <body id="index" class="home">
         <header id="banner" class="body">
-                <h1><a href="./">The Train Station </a></h1>
+                <h1><a href="./">The Train Station</a></h1>
                 <nav><ul>
                     <li class="active"><a href="./category/development.html">Development</a></li>
                     <li><a href="./category/general.html">General</a></li>
@@ -44,7 +44,7 @@ always room for "good enough" and move on.</p>
 <p><em>Note</em> - While I don't go into the details of actually refactoring this view I did have to ensure that this functionality was
 tested so that I had the confidence to be able to <a href="https://twitter.com/kentbeck/status/250733358307500032?lang=en">make the simple change</a>.</p>
 <h2>The view</h2>
-<div class="highlight"><pre><span></span><span class="nd">@blueprint.route</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;POST&quot;</span><span class="p">])</span>
+<div class="highlight"><pre><span></span><code><span class="nd">@blueprint</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;POST&quot;</span><span class="p">])</span>
 <span class="k">def</span> <span class="nf">create_preferences</span><span class="p">(</span><span class="n">account_id</span><span class="p">):</span>
     <span class="c1"># ... some general setup</span>
 
@@ -70,7 +70,7 @@ tested so that I had the confidence to be able to <a href="https://twitter.com/k
             <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">failure</span><span class="p">)</span>
 
     <span class="c1"># ... return successful response</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>This view function is already quite long but my main focus was to be able to test this view without having to test the message
@@ -79,19 +79,19 @@ dispatching, which caused me to think <em>"maybe this is doing too much"</em>.</
 <p>The first step I took was to pull out this functionality into a class.  I wanted to try and keep this consistent with the <a href="https://en.wikipedia.org/wiki/Single_responsibility_principle">Single
 Responsibility principle</a> and, as <a href="https://www.deconstructconf.com/2018/sandi-metz-polly-want-a-message">Sandi Metz</a> teaches,
 be able to explain it's role with one sentence.</p>
-<div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Dispatcher</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">Dispatcher</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pipe</span><span class="p">,</span> <span class="n">logger</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">pipe</span> <span class="o">=</span> <span class="n">pipe</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">logger</span> <span class="o">=</span> <span class="n">logger</span>
 
     <span class="k">def</span> <span class="nf">send</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;dispatchers must implement send&quot;</span><span class="p">)</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>I know <em>pipe</em> isn't potentially the best name but it is good enough for now. This "interface" class allowed me to begin my core
 implementation for the functionality in the view.</p>
-<div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MemberSubscribedDispatcher</span><span class="p">(</span><span class="n">Dispatcher</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">MemberSubscribedDispatcher</span><span class="p">(</span><span class="n">Dispatcher</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">send</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">pipe</span><span class="o">.</span><span class="n">send</span><span class="p">({</span>
@@ -103,7 +103,7 @@ implementation for the functionality in the view.</p>
         <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">exc</span><span class="p">:</span>
             <span class="n">failure</span> <span class="o">=</span> <span class="s2">&quot;Failed to send subscribed message for member </span><span class="si">%s</span><span class="s2">: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;member_id&quot;</span><span class="p">],</span> <span class="n">exc</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">failure</span><span class="p">)</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>By <a href="https://en.wikipedia.org/wiki/Dependency_injection">injecting</a> the <em>pipe</em> and <em>logger</em> above I now have a class that is only 
@@ -116,7 +116,7 @@ factory function that generated the message format previously and brought that m
 the functionality in a manner that meets this "interface".</p>
 <h2>The refactored view</h2>
 <p>After all that, here is where we landed.</p>
-<div class="highlight"><pre><span></span><span class="nd">@blueprint.route</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;POST&quot;</span><span class="p">])</span>
+<div class="highlight"><pre><span></span><code><span class="nd">@blueprint</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;POST&quot;</span><span class="p">])</span>
 <span class="k">def</span> <span class="nf">create_preferences</span><span class="p">(</span><span class="n">account_id</span><span class="p">):</span>
     <span class="c1"># ... some general setup</span>
 
@@ -134,7 +134,7 @@ the functionality in a manner that meets this "interface".</p>
         <span class="c1"># ... MemberOptOutDispatcher</span>
 
     <span class="c1"># ... return successful response</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>This view is now easier to test.  If I feel so inclined I could test that these functions are called within the test.  All the

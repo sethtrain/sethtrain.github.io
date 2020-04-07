@@ -8,7 +8,7 @@
 
 <body id="index" class="home">
         <header id="banner" class="body">
-                <h1><a href="../">The Train Station </a></h1>
+                <h1><a href="../">The Train Station</a></h1>
                 <nav><ul>
                     <li><a href="../category/development.html">Development</a></li>
                     <li class="active"><a href="../category/general.html">General</a></li>
@@ -38,7 +38,7 @@ and an <a href="https://www.fullstackpython.com/static-site-generator.html">arti
 showed up first.  I stuck with it and wanted to share how am producing these articles.</p>
 <h2>Python</h2>
 <p>As I mentioned in an earlier article I have <code>pyenv</code> and <code>pipenv</code> setup.  Here is my <code>Pipfile</code> for <a href="https://sethtrain.github.io">https://sethtrain.github.io</a></p>
-<div class="highlight"><pre><span></span><span class="k">[[source]]</span>
+<div class="highlight"><pre><span></span><code><span class="k">[[source]]</span>
 <span class="na">url</span> <span class="o">=</span> <span class="s">&quot;https://pypi.org/simple&quot;</span>
 <span class="na">verify_ssl</span> <span class="o">=</span> <span class="s">true</span>
 <span class="na">name</span> <span class="o">=</span> <span class="s">&quot;pypi&quot;</span>
@@ -53,7 +53,7 @@ showed up first.  I stuck with it and wanted to share how am producing these art
 
 <span class="k">[requires]</span>
 <span class="na">python_version</span> <span class="o">=</span> <span class="s">&quot;3.7.3&quot;</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>To get up and running, install these dependencies and then run <code>pelican-quickstart</code>.  It will walk you through a couple of questions
@@ -64,11 +64,11 @@ When I feel like I am done I will generate the site, do a quick preview locally 
 <h2>Vim</h2>
 <p>I had established a couple of <code>&lt;leader&gt;</code> bindings for Pelican projects to help me generate and preview quickly.  <a href="https://github.com/tpope/vim-dispatch">vim-dispatch</a>
 makes this possible and easy.</p>
-<div class="highlight"><pre><span></span><span class="k">if</span> <span class="nv">filereadable</span><span class="ss">(</span><span class="s2">&quot;</span><span class="s">pelicanconf.py</span><span class="s2">&quot;</span><span class="ss">)</span>
-    <span class="nv">nmap</span> <span class="o">&lt;</span><span class="nv">leader</span><span class="o">&gt;</span><span class="nv">G</span> :<span class="nv">Dispatch</span> <span class="nv">pipenv</span> <span class="nv">run</span> <span class="nv">generate</span><span class="o">&lt;</span><span class="nv">cr</span><span class="o">&gt;</span>
-    <span class="nv">nmap</span> <span class="o">&lt;</span><span class="nv">leader</span><span class="o">&gt;</span><span class="nv">R</span> :<span class="nv">Dispatch</span> <span class="nv">pipenv</span> <span class="nv">run</span> <span class="nv">preview</span><span class="o">&lt;</span><span class="nv">cr</span><span class="o">&gt;</span>
-<span class="k">endif</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="err">if filereadable(&quot;pelicanconf.py&quot;)</span>
+<span class="err">    nmap &lt;leader&gt;G :Dispatch pipenv run generate&lt;cr&gt;</span>
+<span class="err">    nmap &lt;leader&gt;R :Dispatch pipenv run preview&lt;cr&gt;</span>
+<span class="err">endif</span>
+</code></pre></div>
 
 
 <p>Have fun!</p>                </article>

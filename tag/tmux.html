@@ -8,7 +8,7 @@
 
 <body id="index" class="home">
         <header id="banner" class="body">
-                <h1><a href="../">The Train Station </a></h1>
+                <h1><a href="../">The Train Station</a></h1>
                 <nav><ul>
                     <li><a href="../category/development.html">Development</a></li>
                     <li><a href="../category/general.html">General</a></li>
@@ -53,28 +53,28 @@ goal.</p>
 <h2>Vim</h2>
 <p>I've found these plugins are the ideal plugins to lay the foundation for my main goals.  I use <code>vim-plug</code> as my plugin manager
 but you should be able to use most of the current plugin managers.</p>
-<div class="highlight"><pre><span></span><span class="nv">Plug</span> <span class="s1">&#39;</span><span class="s">prabirshrestha/async.vim</span><span class="s1">&#39;</span>
-<span class="nv">Plug</span> <span class="s1">&#39;</span><span class="s">prabirshrestha/vim-lsp</span><span class="s1">&#39;</span>
-<span class="nv">Plug</span> <span class="s1">&#39;</span><span class="s">w0rp/ale</span><span class="s1">&#39;</span>
-<span class="nv">Plug</span> <span class="s1">&#39;</span><span class="s">davidhalter/jedi-vim</span><span class="s1">&#39;</span>
+<div class="highlight"><pre><span></span><code><span class="nt">Plug</span> <span class="s1">&#39;prabirshrestha/async.vim&#39;</span>
+<span class="nt">Plug</span> <span class="s1">&#39;prabirshrestha/vim-lsp&#39;</span>
+<span class="nt">Plug</span> <span class="s1">&#39;w0rp/ale&#39;</span>
+<span class="nt">Plug</span> <span class="s1">&#39;davidhalter/jedi-vim&#39;</span>
 
-<span class="s2">&quot;</span><span class="s"> ------------------------------------------------------------------------------</span>
-<span class="s2">&quot;</span><span class="s"> LSP</span>
-<span class="s2">&quot;</span><span class="s"> ------------------------------------------------------------------------------</span>
-<span class="k">if</span> <span class="nv">executable</span><span class="ss">(</span><span class="s1">&#39;</span><span class="s">pyls</span><span class="s1">&#39;</span><span class="ss">)</span>
-    <span class="nv">au</span> <span class="nv">User</span> <span class="nv">lsp_setup</span> <span class="k">call</span> <span class="nl">lsp</span>#<span class="nv">register_server</span><span class="ss">(</span>{
-            \ <span class="s1">&#39;</span><span class="s">name</span><span class="s1">&#39;</span>: <span class="s1">&#39;</span><span class="s">pyls</span><span class="s1">&#39;</span>,
-            \ <span class="s1">&#39;</span><span class="s">cmd</span><span class="s1">&#39;</span>: {<span class="nv">server_info</span><span class="o">-&gt;</span>[<span class="s1">&#39;</span><span class="s">pyls</span><span class="s1">&#39;</span>]},
-            \ <span class="s1">&#39;</span><span class="s">whitelist</span><span class="s1">&#39;</span>: [<span class="s1">&#39;</span><span class="s">python</span><span class="s1">&#39;</span>],
-            \ }<span class="ss">)</span>
-<span class="k">endif</span>
-<span class="nv">let</span> <span class="nv">g</span>:<span class="nv">lsp_diagnostics_enabled</span> <span class="o">=</span> <span class="mi">0</span> <span class="c1">; turn off diagnosis because I feel w0rp/ale does a better job</span>
-</pre></div>
+<span class="s2">&quot; ------------------------------------------------------------------------------</span>
+<span class="s2">&quot;</span> <span class="nt">LSP</span>
+<span class="err">&quot;</span> <span class="nt">------------------------------------------------------------------------------</span>
+<span class="nt">if</span> <span class="nt">executable</span><span class="o">(</span><span class="s1">&#39;pyls&#39;</span><span class="o">)</span>
+    <span class="nt">au</span> <span class="nt">User</span> <span class="nt">lsp_setup</span> <span class="nt">call</span> <span class="nt">lsp</span><span class="p">#</span><span class="nn">register_server</span><span class="o">(</span><span class="p">{</span>
+            <span class="err">\</span> <span class="err">&#39;name&#39;:</span> <span class="err">&#39;pyls&#39;,</span>
+            <span class="err">\</span> <span class="err">&#39;cmd&#39;:</span> <span class="err">{server_info-&gt;</span><span class="cp">[</span><span class="s1">&#39;pyls&#39;</span><span class="cp">]</span><span class="p">}</span><span class="o">,</span>
+            <span class="err">\</span> <span class="s1">&#39;whitelist&#39;</span><span class="o">:</span> <span class="cp">[</span><span class="s1">&#39;python&#39;</span><span class="cp">]</span><span class="o">,</span>
+            <span class="err">\</span> <span class="err">}</span><span class="o">)</span>
+<span class="nt">endif</span>
+<span class="nt">let</span> <span class="nt">g</span><span class="p">:</span><span class="nd">lsp_diagnostics_enabled</span> <span class="o">=</span> <span class="nt">0</span> <span class="o">;</span> <span class="nt">turn</span> <span class="nt">off</span> <span class="nt">diagnosis</span> <span class="nt">because</span> <span class="nt">I</span> <span class="nt">feel</span> <span class="nt">w0rp</span><span class="o">/</span><span class="nt">ale</span> <span class="nt">does</span> <span class="nt">a</span> <span class="nt">better</span> <span class="nt">job</span>
+</code></pre></div>
 
 
 <p>Once you have these installed and configured you just need the <code>python-language-server</code>.</p>
 <h2>Python requirements</h2>
-<div class="highlight"><pre><span></span><span class="k">[[source]]</span>
+<div class="highlight"><pre><span></span><code><span class="k">[[source]]</span>
 <span class="na">url</span> <span class="o">=</span> <span class="s">&quot;https://pypi.org/simple&quot;</span>
 <span class="na">verify_ssl</span> <span class="o">=</span> <span class="s">true</span>
 <span class="na">name</span> <span class="o">=</span> <span class="s">&quot;pypi&quot;</span>
@@ -89,14 +89,14 @@ but you should be able to use most of the current plugin managers.</p>
 
 <span class="k">[requires]</span>
 <span class="na">python_version</span> <span class="o">=</span> <span class="s">&quot;3.7.3&quot;</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>Now how do we put these together to accomplish our goals?</p>
 <h2>Tmux and Tmuxp</h2>
 <p>I'm definitely not here to sell you on <code>tmux</code> or <code>tmuxp</code> just show you how I use them to glue it all up.  Here is an example <code>.tmuxp.yml</code>
 file:</p>
-<div class="highlight"><pre><span></span>start_directory: &quot;<span class="cp">${</span><span class="n">PWD</span><span class="cp">}</span>&quot;
+<div class="highlight"><pre><span></span><code>start_directory: &quot;<span class="cp">${</span><span class="n">PWD</span><span class="cp">}</span>&quot;
 shell_command_before: &quot;pyenv local 3.7.3&quot;
 session_name: project_name
 environment:
@@ -108,7 +108,7 @@ windows:
 - window_name: execs
   panes:
       - pipenv run pyls
-</pre></div>
+</code></pre></div>
 
 
 <p>There is definitely one special thing to note here.  <code>vim-jedi</code> still doesn't easily work with <code>pipenv</code> so I accomplish the
