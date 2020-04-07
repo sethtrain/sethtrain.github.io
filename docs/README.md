@@ -1,20 +1,13 @@
 sethtrain.github.io
 ===================
 
-Just sharing the things I'm thinking about.
-
 Getting started
 ---------------
 
-    $ pipenv install
+    $ pyenv virtualenv 3.7.2 sethtrain
 
-Site generation
----------------
+Generate site (locally)
+-----------------------
 
-    $ pipenv run generate
-
-Publish Github Page
--------------------
-
-    $ pipenv run publish
+    $ pelican content --output .
 
